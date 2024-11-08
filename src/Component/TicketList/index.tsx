@@ -1,8 +1,10 @@
-import "./style.scss";
 import { List } from "../List";
 import { Ticket } from "../../Types";
+import { useState } from "react";
 
 export const TicketsList = () => {
+  const [viewedItemCount, setViewedItemCount] = useState(10);
+
   const priority = ["Low", "Medium", "High"];
   const status = ["Open", "In Progress", "Closed"];
   const data: Ticket[] = Array.from({ length: 10000 }, (_, index) => ({
@@ -15,8 +17,11 @@ export const TicketsList = () => {
 
   return (
     <div className="container">
-      <h2>Tasks</h2>
+      <h2>
+        Tasks ({viewedItemCount}/{data?.length})
+      </h2>
       <List
+        onUpdateCurrentView={setViewedItemCount}
         gridTemplateColumns="1.5fr 2.5fr repeat(2, 1fr)"
         data={data}
         columns={[

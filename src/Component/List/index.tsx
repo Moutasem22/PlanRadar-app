@@ -6,6 +6,9 @@ export type Props = {
   data: Ticket[];
   columns: ListFieldMap[];
   gridTemplateColumns?: string;
+  visibleRowPerPage?: number;
+  cardHeight?: number;
+  onUpdateCurrentView?: (count: number) => void;
 };
 
 export type ListFieldMap = {
@@ -15,7 +18,14 @@ export type ListFieldMap = {
   style?: any;
 };
 
-export const List = ({ columns, data, gridTemplateColumns }: Props) => {
+export const List = ({
+  data,
+  columns,
+  gridTemplateColumns,
+  visibleRowPerPage = 10,
+  cardHeight = 50,
+  onUpdateCurrentView,
+}: Props) => {
   const gridColumns = gridTemplateColumns || `repeat(${columns.length}, 1fr)`;
 
   const generateRowData = (record: Ticket) => (
@@ -56,12 +66,13 @@ export const List = ({ columns, data, gridTemplateColumns }: Props) => {
         </div>
 
         <InfiniteScrollWrapper
-          visibleRowPerPage={10}
-          cardHeight={50}
+          visibleRowPerPage={visibleRowPerPage}
+          cardHeight={cardHeight}
           data={data}
           itemContent={(_index: number, record: Ticket) => {
             return generateRowData(record);
           }}
+          onUpdateCurrentView={onUpdateCurrentView}
           loadingFooter={
             <div style={{ padding: "10px", textAlign: "center" }}>
               Loading more items...

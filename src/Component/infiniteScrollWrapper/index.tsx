@@ -6,14 +6,16 @@ type Props<T> = {
   data: T[];
   itemContent: (index: number, item: T) => ReactNode;
   loadingFooter?: ReactNode;
+  onUpdateCurrentView?: (count: number) => void;
 };
 
 export const InfiniteScrollWrapper = <T,>({
-  visibleRowPerPage,
-  cardHeight,
   data,
-  itemContent,
+  cardHeight,
   loadingFooter,
+  visibleRowPerPage,
+  itemContent,
+  onUpdateCurrentView,
 }: Props<T>) => {
   const [visibleData, setVisibleData] = useState<T[]>(
     data.slice(0, visibleRowPerPage)
@@ -31,6 +33,7 @@ export const InfiniteScrollWrapper = <T,>({
       setVisibleData(newVisibleData);
       setPage(nextPage);
       setIsLoading(false);
+      onUpdateCurrentView?.(nextPage * visibleRowPerPage);
     }, 500);
   };
 
