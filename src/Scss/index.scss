@@ -1,0 +1,30 @@
+@import "./mixins";
+
+* {
+  box-sizing: border-box;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  /* Track */
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: #31393c;
+    border-radius: 4px;
+  }
+}
+
+.container {
+  width: 80%;
+  margin: auto;
+
+  @include mq("tablet-wide") {
+    width: 100%;
+    padding: 0 15px;
+  }
+}

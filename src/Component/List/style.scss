@@ -1,0 +1,108 @@
+.list-wrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: auto;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+    background-color: #65707b;
+  }
+
+  .list {
+    border-collapse: collapse;
+    width: 100%;
+    height: 100%;
+
+    .row {
+      transition: 0.4s ease all;
+
+      &.data {
+        display: grid;
+        background: #fff;
+        border: 1px solid #e9ebed;
+        border-radius: 6px;
+        height: 44px;
+        margin-bottom: 12px;
+
+        &:hover {
+          background: #f4f5f6;
+        }
+
+        .cell {
+          display: flex;
+          overflow: hidden;
+          height: 40px;
+          color: #31393c;
+          padding: 0 12px;
+          align-items: center;
+
+          span {
+            font-size: 14px;
+            line-height: 16px;
+            max-width: 100%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            color: #31393c;
+          }
+
+          &.Closed {
+            span {
+              display: inline-flex;
+              background-color: #26a96c;
+              border-radius: 4px;
+              padding: 6px;
+              color: #fff;
+              font-size: 12px;
+            }
+          }
+
+          &.Open {
+            span {
+              display: inline-flex;
+              background-color: #65707b;
+              border-radius: 4px;
+              padding: 6px;
+              font-size: 12px;
+              color: #fff;
+            }
+          }
+
+          &.InProgress {
+            span {
+              display: inline-flex;
+              background-color: #fdca40;
+              border-radius: 4px;
+              padding: 6px;
+              font-size: 12px;
+              color: #fff;
+            }
+          }
+        }
+      }
+
+      &.header {
+        display: grid;
+        width: 100%;
+        border-bottom: 1px solid #65707b;
+        padding-bottom: 14px;
+        margin-bottom: 24px;
+
+        &::after {
+          content: "";
+          transition: all 0.4s linear;
+        }
+
+        .cell {
+          display: flex;
+          color: #31393c;
+          font-weight: 700;
+          font-size: 14px;
+          line-height: 16px;
+        }
+      }
+    }
+  }
+}
